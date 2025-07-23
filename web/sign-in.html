@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/newcss.css">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- SweetAlert2 CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <title>OLA Fashion Store X | Sign In</title>
+    </head>
+
+    <body>
+
+        <div class="bg-wrapper">
+            <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+
+                <div class="row border rounded-5 p-3 bg-white shadow box-area">
+
+
+                    <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box bgnimg"></div>
+
+
+                    <div class="col-md-6 right-box">
+                        <div class="row align-items-center">
+                            <div class="header-text mb-4" style="text-align: center;">
+                                <h2 style="font-size: 36px; font-weight: 700; color: #333; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif;">
+                                    Welcome to <span style="color: #ff4d6d;">OLA</span>
+                                </h2>
+                                <h3 style="font-size: 24px; font-weight: 500; color: #777; font-family: 'Segoe UI', sans-serif;">
+                                    Fashion Store
+                                </h3>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Email address" id="email" value="">
+                            </div>
+                            <div class="input-group mb-2">
+                                <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" id="password" value="">
+                            </div>
+                            <div class="input-group mb-5 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="rm">
+                                    <label for="formCheck" class="form-check-label text-secondary">Remember Me</label>
+                                </div>
+                                <div class="forgot" >
+                                    <small><a href="forgetPassword.php" onclick="forgotPassword();">Forgot Password?</a></small>
+                                </div>
+                            </div>
+                            <!--                            <div class="d-none" id="msgDiv1">
+                                                            <div class="alert alert-danger" id="msg1"></div>
+                                                        </div>-->
+                            <p id="message" class="text-danger"></p>
+
+                            <div class="mb-3">
+                                <button class="btn btn-lg btn-primary w-100 fs-6" onclick="signIn();">Sign In</button>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="sign-up.html"><button class="btn btn-lg btn-outline-secondary w-100 fs-6">Don't have account? Sign Up</button></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!--<script src="script.js"></script>-->
+        <script src="js/sign-in.js"></script>
+
+    </body>
+
+</html>

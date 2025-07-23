@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+.box-area{
+    width: 930px;
+}
+
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+
+
+::placeholder{
+    font-size: 16px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
+}
+
+
+@media only screen and (max-width: 768px){
+
+     .box-area{
+        margin: 0 10px;
+
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 20px;
+     }
+
+}
+
+.bgnimg {
+    background-image: url("../images/slide-03.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; /* Center the image horizontally and vertically */
+}
+
+
+/*set background image for sign in*/
+.bg-wrapper {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.bg-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/slide-05.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* You can adjust this */
+    z-index: -1; /* Put it behind the content */
+}
+/*set background image for sign in*/
+
+
+
+/*set background image for sign up*/
+.bg-wrapper1 {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.bg-wrapper1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/slide-05.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* You can adjust this */
+    z-index: -1; /* Put it behind the content */
+}
+/*set background image for sign up*/
+
+
+
+/* userprofile */
+.uprfile{
+    border: #ececec;
+}
+
+.labels {
+    font-size: 15px
+}
+/* userprofile */
+.drop{
+    padding: 8px;
+}
+
+
+/* productview */
+.productview{
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr 1fr;
+ grid-gap: 20px;
+}
+
+@media screen and (max-width: 1200px){
+    .productview{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+       }
+    
+}
+
+@media screen and (max-width: 1050px){
+    .productview{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+       }
+    
+}
+
+@media screen and (max-width: 700px){
+    .productview{
+        display: flex;
+        flex-direction: column;
+       }
+
+       .productview > div {
+        margin-inline: auto;
+       }
+    
+}
+
+
+
+.productbox:hover {
+    box-shadow: 5px 10px 25px rgba(15, 9, 79, 0.4);
+
+    
+}
+
+.cartbox{
+    box-shadow: 5px 10px 25px rgba(15, 9, 79, 0.4);
+    border-radius: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+/* footer  */
+.footerres{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+
+}
+
+
+@media screen and (max-width: 1200px){
+    .footerres{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+       }
+    
+}
+
+@media screen and (max-width: 1050px){
+    .footerres{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+       }
+    
+}
+
+@media screen and (max-width: 700px){
+    .footerres{
+        display: flex;
+        flex-direction: column;
+       }
+
+       .footerres > div {
+        margin-inline: auto;
+       }
+    
+}
+
+.singleproduct{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+
+
+@media screen and (max-width: 1200px){
+    .singleproduct{
+        display: grid;
+        grid-template-columns: 1fr ;
+       }
+
+       .singleproduct > div {
+        margin-inline: auto;
+       }
+    
+}
+
+
+
+/* nav bar  */
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    background-color: #0F094F;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+/* nav bar  */
+
+.menubar{
+    display: none;
+}
+
+@media screen and (max-width: 1450px){
+    .hideMobile{
+        display: none;
+    }
+    .menubar{
+        display: block;
+    }
+    
+}
+
+.navmx{
+    margin-inline: 20px;
+}
+
+
+
+/* admin */
+
+/* Admin page*/
+
+.adminSigninBody{
+    background-image: url("Resources/pxfuel.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.product_report{
+    background-image: url("Resources/pxfuel.jpg");
+    
+  
+    
+}
+
+.adminRegBody{
+    background-image: url("Resources/pxfuel.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+
+}
+
+.adminsignIn_Box{
+    width: 350px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(244, 240, 240);
+    box-shadow: 0px 0px 10px 0px rgb(13,13,13);
+}
+
+.adminReg_Box{
+
+    width: 550px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(244, 240, 240);
+    box-shadow: 0px 0px 10px 0px rgb(13,13,13);
+}
+
+.adminBody{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.adminlogin {
+    height: 60px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 30px rgb(152, 150, 149);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.usermanagement{
+    height: 60px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 20px rgb(20, 20, 19);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.brandreg{
+
+    box-shadow: 10px 10px 30px ;
+    border-radius: 5px;
+    height: 140px;
+    
+}
+
+.productmanagement{
+    height: 60px;
+    width: 400px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 20px rgb(20, 20, 19);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.bname{
+    color: white;
+}
+
+.pr{
+    color: black;
+}
+
+/* admin  */
+
+
+
+
+/* invoice  */
+body{margin-top:20px;
+    background-color:#eee;
+    }
+    
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 1rem;
+    }
+/* invoice  */

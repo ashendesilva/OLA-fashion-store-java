@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OLA Fashion Store - Verify Account</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/newcss.css">
+        <style>
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .verification-container {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .verification-card {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                max-width: 900px;
+                width: 100%;
+            }
+
+            .image-section {
+                background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 600px;
+                position: relative;
+            }
+
+            .image-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="0.3" fill="white" opacity="0.08"/><circle cx="50" cy="10" r="0.4" fill="white" opacity="0.12"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');*/
+                opacity: 0.3;
+            }
+
+            .model-placeholder {
+                width: 200px;
+                height: 300px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .form-section {
+                padding: 60px 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .brand-title {
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 5px;
+            }
+
+            .brand-title .highlight {
+                color: #007bff;
+            }
+
+            .subtitle {
+                color: #666;
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+
+            .verification-text {
+                color: #666;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+
+            .verification-inputs {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 30px;
+                justify-content: center;
+            }
+
+            .code-input {
+                width: 50px;
+                height: 60px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: bold;
+                border: 2px solid #e1e5e9;
+                border-radius: 10px;
+                background: #f8f9fa;
+                transition: all 0.3s ease;
+            }
+
+            .code-input:focus {
+                outline: none;
+                border-color: #007bff;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+                transform: scale(1.05);
+            }
+
+            .code-input.filled {
+                background: #e7f3ff;
+                border-color: #007bff;
+            }
+
+            .verify-btn {
+                background: #007bff;
+                border: none;
+                padding: 15px;
+                border-radius: 10px;
+                font-weight: 600;
+                font-size: 1rem;
+                color: white;
+                width: 100%;
+                transition: all 0.3s ease;
+                margin-bottom: 20px;
+            }
+
+            .verify-btn:hover {
+                background: #0056b3;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            }
+
+            .verify-btn:disabled {
+                background: #6c757d;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            .resend-section {
+                text-align: center;
+                color: #666;
+            }
+
+            .resend-link {
+                color: #007bff;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .resend-link:hover {
+                text-decoration: underline;
+            }
+
+            .timer {
+                color: #dc3545;
+                font-weight: bold;
+            }
+
+            @media (max-width: 768px) {
+                .verification-card {
+                    flex-direction: column;
+                }
+
+                .image-section {
+                    min-height: 200px;
+                }
+
+                .form-section {
+                    padding: 40px 30px;
+                }
+
+                .verification-inputs {
+                    gap: 10px;
+                }
+
+                .code-input {
+                    width: 40px;
+                    height: 50px;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .success-message {
+                background: #d4edda;
+                color: #155724;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                display: none;
+            }
+
+            .error-message {
+                background: #f8d7da;
+                color: #721c24;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg-wrapper">
+            <div class="verification-container">
+                <div class="verification-card row g-0">
+                    <!-- Image Section -->
+                    <div class="col-lg-6">
+                        <div class="image-section" style="background-image: url('images/slide-03.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+                            <!--                        <div class="model-placeholder">
+                                                        <i class="fas fa-shield-check fa-4x text-white"></i>
+                                                    </div>-->
+                        </div>
+
+                    </div>
+
+                    <!-- Form Section -->
+                    <div class="col-lg-6">
+                        <div class="form-section">
+                            <h1 class="brand-title">Verify Your Account</h1>
+                            <p class="subtitle">
+                                <span class="highlight">OLA</span> Fashion Store
+                            </p>
+
+                            <div class="success-message" id="successMessage">
+                                <i class="fas fa-check-circle me-2"></i>
+                                Account verified successfully! Redirecting...
+                            </div>
+
+                            <div class="error-message" id="errorMessage">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                Invalid verification code. Please try again.
+                            </div>
+
+                            <p class="verification-text">
+                                We've sent a 6-digit verification code to your email address. 
+                                Please enter the code below to verify your account.
+                            </p>
+
+
+                            <div class="input-group mb-4">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Verification Code" id="verificationCode">
+                            </div>
+                            <p id="message" class="text-danger"></p>
+                            <button type="submit" class="verify-btn"  onclick="verifyAccount();">
+                                <i class="fas fa-check-circle me-2"></i>
+                                Verify Account
+                            </button>
+
+                            <div class="resend-section">
+                                <!--                                <p>Didn't receive the code? 
+                                                                    <span id="timerSection">
+                                                                        Resend in <span class="timer" id="timer">60</span>s
+                                                                    </span>
+                                                                    <a href="#" class="resend-link" id="resendLink" style="display: none;">
+                                                                        Resend Code
+                                                                    </a>
+                                                                </p>-->
+                                <p>Already a member? 
+
+                                    <a href="#">
+                                        Sign In
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const codeInputs = document.querySelectorAll('.code-input');
+                                    const verifyBtn = document.getElementById('verifyBtn');
+                                    const verificationForm = document.getElementById('verificationForm');
+                                    const successMessage = document.getElementById('successMessage');
+                                    const errorMessage = document.getElementById('errorMessage');
+                                    const timerElement = document.getElementById('timer');
+                                    const timerSection = document.getElementById('timerSection');
+                                    const resendLink = document.getElementById('resendLink');
+
+                                    let timerCount = 60;
+                                    let timerInterval;
+
+                                    // Start countdown timer
+                                    function startTimer() {
+                                        timerCount = 60;
+                                        timerSection.style.display = 'inline';
+                                        resendLink.style.display = 'none';
+
+                                        timerInterval = setInterval(() => {
+                                            timerCount--;
+                                            timerElement.textContent = timerCount;
+
+                                            if (timerCount <= 0) {
+                                                clearInterval(timerInterval);
+                                                timerSection.style.display = 'none';
+                                                resendLink.style.display = 'inline';
+                                            }
+                                        }, 1000);
+                                    }
+
+                                    // Initialize timer
+                                    startTimer();
+
+                                    // Handle code input
+                                    codeInputs.forEach((input, index) => {
+                                        input.addEventListener('input', function (e) {
+                                            const value = e.target.value;
+
+                                            // Only allow numbers
+                                            if (!/^\d*$/.test(value)) {
+                                                e.target.value = '';
+                                                return;
+                                            }
+
+                                            // Add filled class
+                                            if (value) {
+                                                e.target.classList.add('filled');
+                                                // Move to next input
+                                                if (index < codeInputs.length - 1) {
+                                                    codeInputs[index + 1].focus();
+                                                }
+                                            } else {
+                                                e.target.classList.remove('filled');
+                                            }
+
+                                            // Check if all inputs are filled
+                                            checkAllInputsFilled();
+                                        });
+
+                                        // Handle backspace
+                                        input.addEventListener('keydown', function (e) {
+                                            if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                                                codeInputs[index - 1].focus();
+                                                codeInputs[index - 1].value = '';
+                                                codeInputs[index - 1].classList.remove('filled');
+                                                checkAllInputsFilled();
+                                            }
+                                        });
+
+                                        // Handle paste
+                                        input.addEventListener('paste', function (e) {
+                                            e.preventDefault();
+                                            const pastedData = e.clipboardData.getData('text');
+                                            const numbers = pastedData.replace(/\D/g, '').substring(0, 6);
+
+                                            numbers.split('').forEach((num, i) => {
+                                                if (codeInputs[i]) {
+                                                    codeInputs[i].value = num;
+                                                    codeInputs[i].classList.add('filled');
+                                                }
+                                            });
+
+                                            checkAllInputsFilled();
+                                        });
+                                    });
+
+                                    // Check if all inputs are filled
+                                    function checkAllInputsFilled() {
+                                        const allFilled = Array.from(codeInputs).every(input => input.value);
+                                        verifyBtn.disabled = !allFilled;
+                                    }
+
+                                    // Handle form submission
+                                    verificationForm.addEventListener('submit', function (e) {
+                                        e.preventDefault();
+
+                                        const code = Array.from(codeInputs).map(input => input.value).join('');
+
+                                        // Hide previous messages
+                                        successMessage.style.display = 'none';
+                                        errorMessage.style.display = 'none';
+
+                                        // Simulate verification process
+                                        verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Verifying...';
+                                        verifyBtn.disabled = true;
+
+                                        setTimeout(() => {
+                                            // For demo purposes, accept any 6-digit code except "000000"
+                                            if (code === '000000') {
+                                                // Show error
+                                                errorMessage.style.display = 'block';
+                                                verifyBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>Verify Account';
+                                                verifyBtn.disabled = false;
+
+                                                // Clear inputs
+                                                codeInputs.forEach(input => {
+                                                    input.value = '';
+                                                    input.classList.remove('filled');
+                                                });
+                                                codeInputs[0].focus();
+                                            } else {
+                                                // Show success
+                                                successMessage.style.display = 'block';
+                                                verifyBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>Verified!';
+
+                                                // Simulate redirect after 2 seconds
+                                                setTimeout(() => {
+                                                    alert('Account verified successfully! You would be redirected to the dashboard.');
+                                                }, 2000);
+                                            }
+                                        }, 1500);
+                                    });
+
+                                    // Handle resend code
+                                    resendLink.addEventListener('click', function (e) {
+                                        e.preventDefault();
+
+                                        // Clear inputs
+                                        codeInputs.forEach(input => {
+                                            input.value = '';
+                                            input.classList.remove('filled');
+                                        });
+
+                                        // Reset button
+                                        verifyBtn.disabled = true;
+
+                                        // Hide messages
+                                        successMessage.style.display = 'none';
+                                        errorMessage.style.display = 'none';
+
+                                        // Restart timer
+                                        clearInterval(timerInterval);
+                                        startTimer();
+
+                                        // Focus first input
+                                        codeInputs[0].focus();
+
+                                        // Show confirmation (you would send actual email here)
+                                        alert('Verification code resent to your email address.');
+                                    });
+
+                                    // Focus first input on page load
+                                    codeInputs[0].focus();
+                                });
+        </script>
+        <script src="js/verify-account.js"></script>
+
+    </body>
+</html>
