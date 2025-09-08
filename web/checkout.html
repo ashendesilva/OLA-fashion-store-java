@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->	
+        <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <!--===============================================================================================-->
+    </head>
+    <body class="animsition" onload="loadCheckOutData(); laodProvince();">
+
+        <!-- Header -->
+        <header class="header-v4">
+            <!-- Header desktop -->
+            <div class="container-menu-desktop">
+                <!-- Topbar -->
+                <div class="top-bar">
+                    <div class="content-topbar flex-sb-m h-full container">
+                        <div class="left-top-bar">
+                            Welcome to OLA Fashion Store
+                        </div>
+
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="#" class="flex-c-m trans-04 p-lr-25">
+                                Help & FAQs
+                            </a>
+
+                            <a href="my-account.html" class="flex-c-m trans-04 p-lr-25">
+                                My Account
+                            </a>
+
+                            <a href="#" class="flex-c-m trans-04 p-lr-25">
+                                EN
+                            </a>
+
+                            <a href="#" class="flex-c-m trans-04 p-lr-25">
+                                LKR
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrap-menu-desktop">
+                    <nav class="limiter-menu-desktop container">
+
+                        <!-- Logo desktop -->		
+                        <a href="index.html" class="logo">
+                            <img src="images/icons/OLAfashionstoreLOGO.png" alt="IMG-LOGO">
+                        </a>
+
+                        <!-- Menu desktop -->
+                        <div class="menu-desktop">
+                            <ul class="main-menu">
+                                <li class="active-menu">
+                                    <a href="home-02.htm">Home</a>
+                                </li>
+
+                                <li>
+                                    <a href="product.html">Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html">About</a>
+                                </li>
+
+                            </ul>
+                        </div>	
+
+                        <!-- Icon header -->
+                        <div class="wrap-icon-header flex-w flex-r-m">
+<!--                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                                <i class="zmdi zmdi-search"></i>
+                            </div>-->
+
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
+                                 onclick="window.location.href = 'cart.html'">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+
+                            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                                <i class="zmdi zmdi-favorite-outline"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>	
+            </div>
+
+            <!-- Header Mobile -->
+            <div class="wrap-header-mobile">
+                <!-- Logo moblie -->		
+                <div class="logo-mobile">
+                    <a href="index.html"><img src="images/icons/OLAfashionstoreLOGO.png" alt="IMG-LOGO"></a>
+                </div>
+
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+<!--                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </div>-->
+
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+
+                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+                        <i class="zmdi zmdi-favorite-outline"></i>
+                    </a>
+                </div>
+
+                <!-- Button show menu -->
+                <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- Menu Mobile -->
+            <div class="menu-mobile">
+                <ul class="topbar-mobile">
+                    <li>
+                        <div class="left-top-bar">
+                            Welcome to OLA Fashion Store
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="#" class="flex-c-m p-lr-10 trans-04">
+                                Help & FAQs
+                            </a>
+
+                            <a href="my-account.html" class="flex-c-m p-lr-10 trans-04">
+                                My Account
+                            </a>
+
+                            <a href="#" class="flex-c-m p-lr-10 trans-04">
+                                EN
+                            </a>
+
+                            <a href="#" class="flex-c-m p-lr-10 trans-04">
+                                USD
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="main-menu-m">
+                    <li>
+                        <a href="home-02.html">Home</a>
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </li>
+
+                    <li>
+                        <a href="product.html">Shop</a>
+                    </li>
+
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Modal Search -->
+            <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+                <div class="container-search-header">
+                    <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                        <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    </button>
+
+                    <form class="wrap-search-header flex-w p-l-15">
+                        <button class="flex-c-m trans-04">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                        <input class="plh3" type="text" name="search" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                min-height: 100vh;
+                color: #1a202c;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem 1rem;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .header h1 {
+                color: white;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .header p {
+                color: rgba(255,255,255,0.8);
+                font-size: 1.1rem;
+            }
+
+            .checkout-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                align-items: start;
+            }
+
+            .card {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                border-radius: 24px;
+                padding: 2.5rem;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: #2d3748;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: #4a5568;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .form-input,
+            .form-select {
+                width: 100%;
+                padding: 1rem 1.25rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+                font-size: 1rem;
+                background: white;
+                transition: all 0.3s ease;
+                outline: none;
+            }
+
+            .form-input:focus,
+            .form-select:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+                transform: scale(1.02);
+            }
+
+            .form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .address-toggle {
+                background: #f7fafc;
+                border-radius: 16px;
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border: 2px solid #e2e8f0;
+            }
+
+            .toggle-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .toggle-btn {
+                padding: 0.75rem 1rem;
+                border: none;
+                border-radius: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: white;
+                color: #718096;
+            }
+
+            .toggle-btn.active {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            }
+
+            .order-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .order-item:last-child {
+                border-bottom: none;
+                font-weight: 700;
+                font-size: 1.1rem;
+                color: #2d3748;
+            }
+
+            .item-name {
+                font-weight: 500;
+                color: #4a5568;
+            }
+
+            .item-price {
+                font-weight: 700;
+                color: #2d3748;
+            }
+
+            .payment-options {
+                margin: 1.5rem 0;
+            }
+
+            .payment-option {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .payment-option:hover {
+                border-color: #667eea;
+                background: #f7fafc;
+            }
+
+            .payment-option.selected {
+                border-color: #667eea;
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            }
+
+            .payment-radio {
+                margin-right: 1rem;
+                scale: 1.2;
+            }
+
+            .payment-label {
+                font-weight: 600;
+                color: #4a5568;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .checkout-btn {
+                width: 100%;
+                padding: 1.25rem 2rem;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                border: none;
+                border-radius: 16px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .checkout-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            }
+
+            .checkout-btn:active {
+                transform: translateY(0);
+            }
+
+            .checkout-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .checkout-btn:hover::before {
+                left: 100%;
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(5px);
+                z-index: 1000;
+            }
+
+            .modal.show {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: fadeIn 0.3s ease;
+            }
+
+            .modal-content {
+                background: white;
+                border-radius: 24px;
+                padding: 3rem;
+                text-align: center;
+                max-width: 500px;
+                margin: 2rem;
+                animation: slideUp 0.3s ease;
+            }
+
+            .modal-icon {
+                font-size: 4rem;
+                color: #48bb78;
+                margin-bottom: 1rem;
+                animation: bounce 1s ease infinite;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #2d3748;
+            }
+
+            .modal-text {
+                color: #718096;
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+            }
+
+            .modal-btn {
+                background: linear-gradient(135deg, #48bb78, #38a169);
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 16px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .modal-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideUp {
+                from {
+                    transform: translateY(30px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                60% {
+                    transform: translateY(-5px);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .checkout-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                }
+
+                .card {
+                    padding: 1.5rem;
+                }
+
+                .form-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .header h1 {
+                    font-size: 2rem;
+                }
+            }
+
+            .saved-address-card {
+                background: #f7fafc;
+                border-radius: 12px;
+                padding: 1rem;
+                border: 2px solid #e2e8f0;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-bottom: 0.5rem;
+            }
+
+            .saved-address-card:hover {
+                border-color: #667eea;
+                background: rgba(102, 126, 234, 0.05);
+            }
+
+            .saved-address-card.selected {
+                border-color: #667eea;
+                background: rgba(102, 126, 234, 0.1);
+            }
+
+            .address-name {
+                font-weight: 700;
+                color: #2d3748;
+                margin-bottom: 0.25rem;
+            }
+
+            .address-details {
+                color: #718096;
+                font-size: 0.9rem;
+            }
+        </style>
+    </head>
+
+    <div class="container">
+
+
+        <div class="checkout-grid">
+            <!-- Billing Section -->
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-user"></i>
+                    Billing Information
+                </h2>
+
+                <!-- Address Toggle -->
+                <div class="address-toggle">
+                    <div class="toggle-buttons">
+                        <button class="toggle-btn active" onclick="setAddressOption('existing')">
+                            <i class="fas fa-home"></i> Saved Address
+                        </button>
+                        <button class="toggle-btn" onclick="setAddressOption('new')">
+                            <i class="fas fa-plus"></i> New Address
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Saved Addresses -->
+                <div id="existingAddressGroup" class="form-group">
+                    <!--                    <div class="saved-address-card selected" data-address="1" onclick="selectAddress('1')">
+                                            <div class="address-name">John Doe</div>
+                                            <div class="address-details">123 Market St, Sydney, 2000</div>
+                                        </div>
+                                        <div class="saved-address-card" data-address="2" onclick="selectAddress('2')">
+                                            <div class="address-name">Emily Brown</div>
+                                            <div class="address-details">45 Fashion Ave, Melbourne, 3000</div>
+                                        </div>-->
+                </div>
+
+                <!-- Billing Form -->
+                <form id="billingForm" novalidate style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Address Line 1</label>
+                        <input type="text" class="form-input" id="lineOne" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Address Line 2</label>
+                        <input type="text" class="form-input" id="lineTwo" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Province</label>
+                        <select id="provinceList" class="form-select" required onchange="loadCity();">
+                            <option value="">Select a Province</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <select id="cityList" class="form-select" required >
+                                <option value="">Select a City</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Postal Code</label>
+                            <input type="text" class="form-input" id="postalCode" required />
+                        </div>
+                    </div>
+                    <button id="addNewAddressBtn" type="button" class="checkout-btn" onclick="addAddress();">
+                        <i class="fas fa-plus"></i> Add New Address
+                    </button>
+                </form>
+
+
+            </div>
+
+            <!-- Order Summary -->
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-receipt"></i>
+                    Order Summary
+                </h2>
+
+                <div class="order-items">
+                    <!--                    <div class="order-item">
+                                            <span class="item-name">Black T-Shirt</span>
+                                            <span class="item-price">$25.00</span>
+                                        </div>
+                                        <div class="order-item">
+                                            <span class="item-name">Blue Jeans</span>
+                                            <span class="item-price">$40.00</span>
+                                        </div>
+                                        <div class="order-item">
+                                            <span class="item-name">Shipping</span>
+                                            <span class="item-price">$5.00</span>
+                                        </div>
+                                        <div class="order-item">
+                                            <span class="item-name">Total</span>
+                                            <span class="item-price">$70.00</span>
+                                        </div>-->
+                </div>
+
+                <!-- Payment Options -->
+                <div class="payment-options">
+                    <label class="form-label">Payment Method</label>
+                    <div class="payment-option selected" onclick="selectPayment('creditCard')">
+                        <input type="radio" name="payment" id="creditCard" class="payment-radio" checked />
+                        <label class="payment-label" for="creditCard">
+                            <i class="fas fa-credit-card"></i>
+                            Credit Card
+                        </label>
+                    </div>
+                    <div class="payment-option" onclick="selectPayment('paypal')">
+                        <input type="radio" name="payment" id="paypal" class="payment-radio" />
+                        <label class="payment-label" for="paypal">
+                            <i class="fab fa-paypal"></i>
+                            PayPal
+                        </label>
+                    </div>
+                </div>
+
+                <button class="checkout-btn" onclick="checkOut1();">
+                    <i class="fas fa-lock"></i>
+                    Secure Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="modal-title">Order Placed Successfully!</h3>
+            <p class="modal-text">Thank you for shopping with Ola Fashion Store! Your order confirmation has been sent to your email.</p>
+            <button class="modal-btn" onclick="closeModal()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+
+        let currentAddressOption = 'existing';
+        let selectedAddressId = '1';
+
+        function setAddressOption(option) {
+            currentAddressOption = option;
+
+            // Update toggle buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const existingGroup = document.getElementById('existingAddressGroup');
+            const billingForm = document.getElementById('billingForm');
+
+
+            if (option === 'existing') {
+                existingGroup.style.display = 'block';
+                billingForm.style.display = 'none';
+                loadSavedAddress(selectedAddressId);
+            } else {
+                existingGroup.style.display = 'none';
+                billingForm.style.display = 'block';
+
+                clearForm();
+            }
+        }
+
+        function selectAddress(id) {
+            selectedAddressId = id;
+
+            // Update visual selection
+            document.querySelectorAll('.saved-address-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-address="${id}"]`).classList.add('selected');
+
+            // Load address data
+            loadSavedAddress(id);
+        }
+
+//        function loadSavedAddress(id) {
+//            const data = savedAddresses[id];
+//            document.getElementById("fullName").value = data.fullName;
+//            document.getElementById("email").value = data.email;
+//            document.getElementById("address").value = data.address;
+//            document.getElementById("city").value = data.city;
+//            document.getElementById("zip").value = data.zip;
+//        }
+
+        function clearForm() {
+            document.getElementById("billingForm").reset();
+        }
+
+        function selectPayment(method) {
+            // Update visual selection
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            // Update radio button
+            document.getElementById(method).checked = true;
+        }
+
+        function placeOrder() {
+            const form = document.getElementById("billingForm");
+
+            // Simple validation
+            const requiredFields = form.querySelectorAll('input[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e53e3e';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e2e8f0';
+                }
+            });
+
+            if (!isValid) {
+                return;
+            }
+
+            // Show success modal
+            document.getElementById('orderModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('show');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedAddress('1');
+        });
+
+        // Click outside modal to close
+        document.getElementById('orderModal').addEventListener('click', (e) => {
+            if (e.target.id === 'orderModal') {
+                closeModal();
+            }
+        });
+    </script>
+
+
+
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32" style="clear: both;
+            position: relative;
+            z-index: 100; ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Categories
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Women
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Men
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Shoes
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Watches
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Help
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Track Order
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Returns 
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Shipping
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                FAQs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        GET IN TOUCH
+                    </h4>
+
+                    <p class="stext-107 cl7 size-201">
+                        Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                    </p>
+
+                    <div class="p-t-27">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Newsletter
+                    </h4>
+
+                    <form>
+                        <div class="wrap-input1 w-full p-b-4">
+                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+                            <div class="focus-input1 trans-04"></div>
+                        </div>
+
+                        <div class="p-t-18">
+                            <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-t-40">
+                <div class="flex-c-m flex-w p-b-18">
+                    <a href="#" class="m-all-1">
+                        <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+                    </a>
+
+                    <a href="#" class="m-all-1">
+                        <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+                    </a>
+
+                    <a href="#" class="m-all-1">
+                        <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+                    </a>
+
+                    <a href="#" class="m-all-1">
+                        <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+                    </a>
+
+                    <a href="#" class="m-all-1">
+                        <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+                    </a>
+                </div>
+
+                <p class="stext-107 cl6 txt-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+                        function updateQuantity(btn, change) {
+                            const input = btn.parentElement.querySelector('.quantity-input');
+                            let quantity = parseInt(input.value) + change;
+
+                            if (quantity < 1)
+                                quantity = 1;
+                            if (quantity > 10)
+                                quantity = 10;
+
+                            input.value = quantity;
+                            updateItemPrice(btn.closest('.cart-item'));
+                            recalculateTotal();
+                        }
+
+                        function updateItemPrice(cartItem) {
+                            const basePrice = parseFloat(cartItem.dataset.price);
+                            const quantity = parseInt(cartItem.querySelector('.quantity-input').value);
+                            const totalPrice = basePrice * quantity;
+
+                            cartItem.querySelector('.price').textContent = '$' + totalPrice.toFixed(2);
+                        }
+
+                        function removeItem(btn) {
+                            const cartItem = btn.closest('.cart-item');
+                            cartItem.style.transform = 'translateX(-100%)';
+                            cartItem.style.opacity = '0';
+
+                            setTimeout(() => {
+                                cartItem.remove();
+                                updateCartCount();
+                                recalculateTotal();
+
+                                if (document.querySelectorAll('.cart-item').length === 0) {
+                                    showEmptyCart();
+                                }
+                            }, 300);
+                        }
+
+                        function updateCartCount() {
+                            const itemCount = document.querySelectorAll('.cart-item').length;
+                            document.getElementById('cart-count').textContent = itemCount;
+                        }
+
+                        function recalculateTotal() {
+                            let subtotal = 0;
+                            const cartItems = document.querySelectorAll('.cart-item');
+
+                            cartItems.forEach(item => {
+                                const basePrice = parseFloat(item.dataset.price);
+                                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                                subtotal += basePrice * quantity;
+
+                                // Update individual item price display
+                                updateItemPrice(item);
+                            });
+
+                            const shipping = subtotal > 100 ? 0 : 9.99;
+                            const tax = subtotal * 0.08;
+                            const total = subtotal + shipping + tax;
+
+                            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+                            document.getElementById('shipping').textContent = shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2);
+                            document.getElementById('tax').textContent = '$' + tax.toFixed(2);
+                            document.getElementById('total').textContent = '$' + total.toFixed(2);
+                        }
+
+                        function showEmptyCart() {
+                            document.getElementById('cart-items').innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Looks like you haven't added any items to your cart yet.</p>
+                    <button class="btn btn-dark btn-lg mt-3">
+                        <i class="fas fa-arrow-left me-2"></i>Start Shopping
+                    </button>
+                </div>
+            `;
+                        }
+
+                        // Initialize cart on page load
+                        document.addEventListener('DOMContentLoaded', function () {
+                            recalculateTotal();
+                            updateCartCount();
+
+                            // Add event listeners for quantity inputs
+                            document.querySelectorAll('.quantity-input').forEach(input => {
+                                input.addEventListener('change', recalculateTotal);
+                            });
+                        });
+
+                        // Add some interactive animations
+                        document.querySelectorAll('.cart-item').forEach(item => {
+                            item.addEventListener('mouseenter', function () {
+                                this.style.transform = 'translateY(-2px)';
+                            });
+
+                            item.addEventListener('mouseleave', function () {
+                                this.style.transform = 'translateY(0)';
+                            });
+                        });
+    </script>
+
+
+    <!--===============================================================================================-->	
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script>
+                        $(".js-select2").each(function () {
+                            $(this).select2({
+                                minimumResultsForSearch: 20,
+                                dropdownParent: $(this).next('.dropDownSelect2')
+                            });
+                        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="js/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/parallax100/parallax100.js"></script>
+    <script>
+                        $('.parallax100').parallax100();
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+                        $('.gallery-lb').each(function () { // the containers for all your galleries
+                            $(this).magnificPopup({
+                                delegate: 'a', // the selector for gallery item
+                                type: 'image',
+                                gallery: {
+                                    enabled: true
+                                },
+                                mainClass: 'mfp-fade'
+                            });
+                        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/isotope/isotope.pkgd.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script>
+                        $('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
+                            e.preventDefault();
+                        });
+                        $('.js-addwish-b2').each(function () {
+                            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+                            $(this).on('click', function () {
+                                swal(nameProduct, "is added to wishlist !", "success");
+                                $(this).addClass('js-addedwish-b2');
+                                $(this).off('click');
+                            });
+                        });
+                        $('.js-addwish-detail').each(function () {
+                            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+                            $(this).on('click', function () {
+                                swal(nameProduct, "is added to wishlist !", "success");
+                                $(this).addClass('js-addedwish-detail');
+                                $(this).off('click');
+                            });
+                        });
+                        /*---------------------------------------------*/
+
+                        $('.js-addcart-detail').each(function () {
+                            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+                            $(this).on('click', function () {
+                                swal(nameProduct, "is added to cart !", "success");
+                            });
+                        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+                        $('.js-pscroll').each(function () {
+                            $(this).css('position', 'relative');
+                            $(this).css('overflow', 'hidden');
+                            var ps = new PerfectScrollbar(this, {
+                                wheelSpeed: 1,
+                                scrollingThreshold: 1000,
+                                wheelPropagation: false,
+                            });
+                            $(window).on('resize', function () {
+                                ps.update();
+                            })
+                        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/my-account.js"></script>
+
+</body>
+</html>

@@ -115,6 +115,7 @@ var cityList;
 function loadData() {
     getUserData();
     laodProvince();
+    loadUserOrders();
 }
 
 async function laodProvince() {
@@ -122,7 +123,7 @@ async function laodProvince() {
     const response = await fetch("LoadAddressData");
     const json = await response.json();
     if (json.status) {
-        console.log(json)
+//        console.log(json)
 //        loadprovince
         const provinceSelect = document.getElementById("provinceList");
         cityList = json.citydList;
@@ -186,10 +187,11 @@ async function addAddress() {
 
         if (response.ok) {
             const json = await response.json();
-            console.log(json);
+//            console.log(json);
             Swal.close();
 
             if (json.status) {
+                await fetch("MyAccount");
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -230,49 +232,15 @@ async function addAddress() {
 
 async function getUserData() {
     const response = await fetch("MyAccount");
-//    console.log(response);
     if (response.ok) {
         const json = await response.json();
-//        console.log(json)
+//        console.log(json);
         document.getElementById("username").innerHTML = `Hello, ${json.firstName} ${json.lastName}`;
         document.getElementById("since").innerHTML = `OLA Fashion Store Member Since ${json.since}`;
         document.getElementById("firstName").value = json.firstName;
         document.getElementById("lastName").value = json.lastName;
         document.getElementById("email").value = json.email;
         document.getElementById("phone").value = json.mobile;
-        document.getElementById("currentPassword").value = json.password;
-//        if (json.hasOwnProperty("addressList") && json.addressList !== undefined) {
-//            let email;
-//            let lineOne;
-//            let lineTwo;
-//            let city;
-//            let postalCode;
-//            let cityId;
-//            const addressUL = document.getElementById("addressUL");
-//            json.addressList.forEach(address => {
-//                email = json.firstname;
-//                lineOne = address.address_line_1;
-//                lineTwo = address.address_line_2;
-//                city = address.city.name;
-//                postalCode = address.postal_code;
-//                cityId = address.province.name;
-//                const line = document.createElement("li");
-//                line.innerHTML = lineOne + ",<br/>" +
-//                        lineTwo + ",<br/>" +
-//                        city + "<br/>" +
-//                        postalCode;
-//                addressUL.appendChild(line);
-//            });
-//            document.getElementById("addName").innerHTML = `Name: ${json.firstName} ${json.lastName}`;
-//            document.getElementById("addEmail").innerHTML = `Email: ${email}`;
-//            document.getElementById("contact").innerHTML = `Phone: 011-2215453`;
-//
-//            document.getElementById("lineOne").value = lineOne;
-//            document.getElementById("lineTwo").value = lineTwo;
-//            document.getElementById("postalCode").value = postalCode;
-//            document.getElementById("citySelect").value = parseInt(cityId);
-//        }
-
         if (json.hasOwnProperty("addressList") && json.addressList !== undefined) {
             const addressUL = document.getElementById("addressUL");
             addressUL.innerHTML = ""; // Clear existing addresses
@@ -297,11 +265,141 @@ async function getUserData() {
             <p id="city">${city}</p>
             <p id="province">${province}</p>
             <p id="mobile">Phone: ${json.mobile}</p>
+                <button class="btn btn-danger btn-sm delete-address" 
+            data-id="${address.id}" 
+            onclick="deleteAddress('${address.id}')">
+        Delete
+    </button>
         `;
+//                deleteAddress(address.id);
                 addressUL.appendChild(addressCard);
             });
         }
 
     }
 
+}
+
+async function deleteAddress(addressID) {
+//    console.log(addressID);
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This address will be permanently deleted.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`DeleteUserAddress?addressID=${addressID}`, {
+                    method: 'DELETE'
+                });
+                const json = await response.json();
+//                console.log(json);
+
+                if (json.status) {
+                    await fetch("MyAccount")
+                    Swal.fire("Deleted!", json.message || "Address deleted successfully.", "success")
+                            .then(() => {
+                                location.reload();
+                            });
+                } else {
+                    Swal.fire("Error!", json.message || "Failed to delete address.", "error");
+                }
+            } catch (error) {
+                Swal.fire("Error!", "Something went wrong while deleting.", "error");
+            }
+        }
+    });
+}
+
+
+
+async function updateAccoutDetails() {
+    const phone = document.getElementById('phone').value;
+    const lastName = document.getElementById('lastName').value;
+    const firstName = document.getElementById('firstName').value;
+    const email = document.getElementById('email').value;
+
+
+    const user = {
+        phone: phone,
+        lastName: lastName,
+        firstName: firstName,
+        email: email
+    };
+
+    const userJson = JSON.stringify(user);
+
+    const response = await fetch(
+            "UpdateUserDetails",
+            {
+                method: "POST",
+                body: userJson,
+                header: {
+                    "Content-Type": "application/json"
+                }
+            }
+    );
+
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            Swal.fire({
+                icon: 'success',
+                title: 'User details update Successful!',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload();
+            });
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'User Update Failed',
+                text: json.message || 'Something went wrong!',
+                confirmButtonText: 'Try Again'
+            });
+        }
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Server Error',
+            text: 'Unable to connect to the server. Please try again later.',
+            confirmButtonText: 'OK'
+        });
+    }
+
+}
+async function loadUserOrders() {
+    const response = await fetch("LoadUserOrders");
+
+    if (response.ok) {
+        const json = await response.json();
+
+//        console.log(json);
+        const tbody = document.querySelector('#orders table tbody');
+        tbody.innerHTML = "";
+
+        json.orders.forEach(order => {
+            const date = new Date(order.date).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+            tbody.innerHTML += `
+                    <tr>
+                        <td>#ORD-${order.orderId}</td>
+                        <td>${date}</td>
+                        <td>${order.totalItems}</td>
+                        <td>$${order.totalPrice}</td>
+                    </tr>
+                `;
+        });
+
+    }
 }

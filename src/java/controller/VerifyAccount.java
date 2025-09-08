@@ -21,7 +21,7 @@ public class VerifyAccount extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
-
+        
         JsonObject resJsonObject = new JsonObject();
         resJsonObject.addProperty("status", false);
         Gson gson = new Gson();

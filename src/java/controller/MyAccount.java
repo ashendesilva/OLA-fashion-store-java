@@ -26,10 +26,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @author Dilhara
- */
+
 @WebServlet(name = "MyAccount", urlPatterns = {"/MyAccount"})
 public class MyAccount extends HttpServlet {
 
@@ -58,6 +55,7 @@ public class MyAccount extends HttpServlet {
                 responseObject.add("addressList", gson.toJsonTree(addressList));
             }
 
+            
             String toJson = gson.toJson(responseObject);
             response.setContentType("application/json");
             response.getWriter().write(toJson);

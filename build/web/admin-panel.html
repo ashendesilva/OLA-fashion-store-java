@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- SweetAlert2 CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <title>Clothing Store Admin Dashboard</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #000000 0%, #2d2d2d 100%);
+                /* Darker gradient background */
+                min-height: 100vh;
+                color: white;
+                /* White text */
+            }
+
+            .dashboard {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .sidebar {
+                width: 280px;
+                background: rgba(0, 0, 0, 0.9);
+                /* Black background with slight transparency */
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+                border-right: 1px solid rgba(255, 255, 255, 0.18);
+                padding: 2rem 0;
+            }
+
+            .logo {
+                text-align: center;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+
+            .logo h1 {
+                color: white;
+                /* White logo text */
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+
+            .nav-menu {
+                list-style: none;
+            }
+
+            .nav-item {
+                margin: 0.5rem 1rem;
+            }
+
+            .nav-link {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                color: #d1d1d1;
+                /* Light grey text */
+                text-decoration: none;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                font-weight: 500;
+            }
+
+            .nav-link:hover,
+            .nav-link.active {
+                background: linear-gradient(135deg, #fcfcfc, #ffffff);
+                /* Dark background on hover */
+                color: rgb(0, 0, 0);
+                transform: translateX(5px);
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+
+            .nav-icon {
+                margin-right: 0.75rem;
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                flex: 1;
+                padding: 2rem;
+                overflow-y: auto;
+                color: white;
+                /* White text */
+            }
+
+            .header {
+                background: rgba(255, 255, 255, 0.9);
+                /* Dark background for header */
+                backdrop-filter: blur(10px);
+                padding: 1.5rem 2rem;
+                border-radius: 16px;
+                margin-bottom: 2rem;
+                box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            }
+
+            .header h2 {
+                color: rgb(0, 0, 0);
+                /* White text in header */
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            .content-section {
+                display: none;
+                background: rgba(255, 255, 255, 0.9);
+                /* Dark background for content sections */
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 2rem;
+                box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+                margin-bottom: 2rem;
+            }
+
+            .content-section.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .section-header {
+                display: flex;
+                justify-content: between;
+                align-items: center;
+                margin-bottom: 2rem;
+                border-bottom: 2px solid #444444;
+                padding-bottom: 1rem;
+            }
+
+            .section-title {
+                color: rgb(0, 0, 0);
+                /* White section titles */
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .btn-primary {
+
+                margin-left: 65%;
+                background: linear-gradient(135deg, #333333, #444444);
+                width: 300px;
+                /* Dark buttons */
+                color: white;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-success {
+                background: linear-gradient(135deg, #4caf50, #388e3c);
+                /* Green for success */
+                color: white;
+            }
+
+            .btn-danger {
+                background: linear-gradient(135deg, #f44336, #e53935);
+                /* Red for danger */
+                color: white;
+            }
+
+            .data-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .data-table th {
+                background: linear-gradient(135deg, #000000, #000000);
+                /* Dark table headers */
+                color: white;
+                padding: 1rem;
+                text-align: left;
+                font-weight: 600;
+            }
+
+            .data-table td {
+                padding: 1rem;
+                border-bottom: 1px solid #444444;
+                background: rgba(0, 0, 0, 0.8);
+                /* Dark background for table rows */
+            }
+
+            .data-table tr:hover td {
+                background: #555555;
+                /* Darker row on hover */
+            }
+
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+            }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+                transition: 0.4s;
+                border-radius: 30px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background: white;
+                transition: 0.4s;
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            input:checked+.slider {
+                background: linear-gradient(135deg, #48bb78, #38a169);
+            }
+
+            input:checked+.slider:before {
+                transform: translateX(30px);
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(5px);
+            }
+
+            .modal-content {
+                background: white;
+                margin: 5% auto;
+                padding: 2rem;
+                border-radius: 16px;
+                width: 90%;
+                max-width: 600px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: modalSlideIn 0.3s ease;
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+                border-bottom: 2px solid #e2e8f0;
+                padding-bottom: 1rem;
+            }
+
+            .modal-title {
+                color: #2d3748;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .close {
+                color: #a0aec0;
+                font-size: 2rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .close:hover {
+                color: #e53e3e;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #4a5568;
+                font-weight: 600;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 0.75rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .status-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .status-card {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid;
+                transition: transform 0.3s ease;
+            }
+
+            .status-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .status-card.users {
+                border-left-color: #667eea;
+            }
+
+            .status-card.products {
+                border-left-color: #48bb78;
+            }
+
+            .status-card.orders {
+                border-left-color: #ed8936;
+            }
+
+            .status-card.revenue {
+                border-left-color: #9f7aea;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+                color: #718096;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-value {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #2d3748;
+            }
+        </style>
+
+    </head>
+
+    <body onload="loadProductData(); loadUserTable();">
+        <div class="dashboard">
+            <nav class="sidebar">
+                <div class="logo" >
+                     <h1 onclick="window.location = 'index.html'">OLA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-section="dashboard">
+                            <span class="nav-icon">📊</span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="users">
+                            <span class="nav-icon">👥</span>
+                            User Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="products">
+                            <span class="nav-icon">📦</span>
+                            Product Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="categories">
+                            <span class="nav-icon">🏷️</span>
+                            Category Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="subcategories">
+                            <span class="nav-icon">🏷️</span>
+                            Sub Category Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="brands">
+                            <span class="nav-icon">🎯</span>
+                            Brand Management
+                        </a>
+                    </li>
+                    <!--                    <li class="nav-item">
+                                            <a href="#" class="nav-link" data-section="locations">
+                                                <span class="nav-icon">📍</span>
+                                                Province Management
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" data-section="cities">
+                                                <span class="nav-icon">📍</span>
+                                                City Management
+                                            </a>
+                                        </li>-->
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <header class="header">
+                    <h2 id="page-title">Dashboard Overview</h2>
+                </header>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="status-cards">
+                        <div class="status-card users">
+                            <div class="card-title">Total Users</div>
+                            <div class="card-value" id="totalUsers"></div>
+                        </div>
+                        <div class="status-card products">
+                            <div class="card-title">Total Products</div>
+                            <div class="card-value" id="totalProduct"></div>
+                        </div>
+                        <div class="status-card orders">
+                            <div class="card-title">Total Orders</div>
+                            <div class="card-value" id="totalOrders"></div>
+                        </div>
+                        <!--                        <div class="status-card revenue">
+                                                    <div class="card-title">Monthly Revenue</div>
+                                                    <div class="card-value">$12,345</div>
+                                                </div>-->
+                    </div>
+                </section>
+
+                <!-- User Management Section -->
+                <section id="users" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">User Management</h3>
+                        <button class="btn btn-primary" onclick="printUserTable();">Print</button> 
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>User Type</th>
+                                <th>Verification</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!--<button class="btn-primary" style="height: 40px; margin-top: 20px" onclick="printUserTable();">Print</button>-->
+
+
+
+                </section>
+
+                <!-- Product Management Section -->
+                <section id="products" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Product Management</h3>
+                        <button class="btn btn-primary" id="addProductBtn">➕ Add Product</button>
+                        <button class="btn" style="background-color: blue; color: white; margin-left: 20px" onclick="printProductTable();">Print</button>
+
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Color</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Status</th>
+                                <!-- <th>Actions</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Category Management Section -->
+                <section id="categories" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Category Management</h3>
+                    </div>
+                    <div class="section-header">
+                        <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+                        <button onclick="addCategory();" class="btn btn-primary">➕ Add Category</button>
+                        <button class="btn" style="background-color: blue; color: white; margin-left: 20px" onclick="printCategoryTable();">Print</button>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Category Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Sub-category Management Section -->
+                <section id="subcategories" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Sub-category Management</h3>
+                    </div>
+                    <div class="section-header">
+                        <input  type="text" class="form-control" id="categoryName" placeholder="">
+                        <button class="btn btn-primary" id="cityAddBtn">➕ Add Sub-category</button>
+                        <button class="btn" style="background-color: blue; color: white; margin-left: 20px" onclick="printSubCategoryTable()();">Print</button>
+
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Category Name</th>
+                                <th>Sub-category Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- City Management Section -->
+                <section id="cities" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">City Management</h3>
+                    </div>
+
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Province</th>
+                                <th>City Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C001</td>
+                                <td>Western Province</td>
+                                <td>Colombo</td>
+                                <td>
+                                    <button class="btn btn-danger"
+                                            style="padding: 0.5rem 1rem; font-size: 0.8rem;">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>C002</td>
+                                <td>Central Province</td>
+                                <td>Kandy</td>
+                                <td>
+                                    <button class="btn btn-danger"
+                                            style="padding: 0.5rem 1rem; font-size: 0.8rem;">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+
+                <!-- Brand Management Section -->
+                <section id="brands" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Brand Management</h3>
+                        <button class="btn btn-primary">➕ Register Brand</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Brand Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                            <!-- <tr>
+                                <td>B002</td>
+                                <td>Adidas</td>
+                                <td>Germany</td>
+                                <td>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Edit</button>
+                                    <button class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Delete</button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Location Management Section -->
+                <section id="locations" class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Province</h3>
+                        <button class="btn btn-primary">➕ Add Location</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Province</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L001</td>
+                                <td>Western Province</td>
+                            </tr>
+                            <!-- <tr>
+                                <td>L002</td>
+                                <td>Central Province</td>
+                                <td>Kandy, Matale, Nuwara Eliya</td>
+                                <td>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Edit</button>
+                                    <button class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Delete</button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+
+        <!-- Add Product Modal -->
+        <div id="addProductModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add New Product</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" id="productTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" id="productDescription" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Price ($)</label>
+                        <input type="number" class="form-control" min="1" id="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-control" min="1" id="productQty" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select onchange="loadSubCategory();" class="form-control" id="productCategory" required>
+                            <option value="0">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Sub Category</label>
+                        <select class="form-control" id="productSubCategory" required>
+                            <option value="0">Select Sub Category</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Color</label>
+                        <select class="form-control" id="productColor" required>
+                            <option value="0">Select Color</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Size</label>
+                        <select class="form-control" id="productSize" required>
+                            <option value="0">Select Size</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Brand</label>
+                        <select class="form-control" id="productBrand" required>
+                            <option value="0">Select Brand</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Image Upload Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Image 1</label>
+                        <input type="file" class="form-control" id="img1" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Image 2</label>
+                        <input type="file" class="form-control" id="img2" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Image 3</label>
+                        <input type="file" class="form-control" id="img3" accept="image/*">
+                    </div>
+                </div>
+                <span id="message"></span>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-success" style="flex: 1;" onclick="saveProduct();">Save Product</button>
+                    <button type="button" class="btn btn-danger" id="cancelBtn" style="flex: 1;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Add City Modal -->
+        <div id="addCityModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add New City</h3>
+                    <span class="CityClose">&times;</span>
+                </div>
+                <form id="addCityForm">
+                    <div class="form-group">
+                        <label class="form-label">Province</label>
+                        <select class="form-control" id="cityProvince" required>
+                            <option value="">Select Province</option>
+                            <option value="western">Western Province</option>
+                            <option value="central">Central Province</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City Name</label>
+                        <input type="text" class="form-control" id="cityName" required>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn btn-success" style="flex: 1;">Save City</button>
+                        <button type="button" class="btn btn-danger" id="cancelCityBtn" style="flex: 1;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <style>
+            /* Modal Content Scroll */
+            #addProductModal .modal-content {
+                max-height: 80vh;
+                /* Set a max height for the modal */
+                overflow-y: auto;
+                /* Make the content scrollable */
+                padding: 2rem;
+            }
+        </style>
+        <script>
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+            const pageTitle = document.getElementById('page-title');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active class from all links
+                    navLinks.forEach(item => item.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    link.classList.add('active');
+
+                    // Hide all sections
+                    sections.forEach(section => section.classList.remove('active'));
+
+                    // Show the selected section
+                    const sectionId = link.getAttribute('data-section');
+                    const activeSection = document.getElementById(sectionId);
+                    activeSection.classList.add('active');
+
+                    // Update page title based on the selected section
+                    pageTitle.textContent = link.textContent + ' Overview';
+                });
+            });
+
+            //product Modal functionality
+            const addProductBtn = document.getElementById('addProductBtn');
+            const addProductModal = document.getElementById('addProductModal');
+            const closeModalBtn = document.querySelector('.close');
+            const cancelModalBtn = document.getElementById('cancelBtn');
+            const addProductForm = document.getElementById('addProductForm');
+
+            addProductBtn.addEventListener('click', () => {
+                addProductModal.style.display = 'block';
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                addProductModal.style.display = 'none';
+            });
+
+            cancelModalBtn.addEventListener('click', () => {
+                addProductModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === addProductModal) {
+                    addProductModal.style.display = 'none';
+                }
+            });
+
+            //city Modal functionality
+            const addcitytBtn = document.getElementById('cityAddBtn');
+            const addCityModal = document.getElementById('addCityModal');
+            const closeCityModalBtn = document.querySelector('.CityClose');
+            const cancelCityModalBtn = document.getElementById('cancelCityBtn');
+
+            addcitytBtn.addEventListener('click', () => {
+                addCityModal.style.display = 'block';
+            });
+
+            closeCityModalBtn.addEventListener('click', () => {
+                addCityModal.style.display = 'none';
+            });
+
+            cancelCityModalBtn.addEventListener('click', () => {
+                addCityModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === addCityModal) {
+                    addCityModal.style.display = 'none';
+                }
+            });
+
+            // Handle form submission
+            //                            addProductForm.addEventListener('submit', (e) => {
+            //                                e.preventDefault();
+            //                                const title = document.getElementById('productTitle').value;
+            //                                const description = document.getElementById('productDescription').value;
+            //                                const price = document.getElementById('productPrice').value;
+            //                                const qty = document.getElementById('productQty').value;
+            //                                const category = document.getElementById('productCategory').value;
+            //                                const subCategory = document.getElementById('productSubCategory').value;
+            //                                const color = document.getElementById('productColor').value;
+            //                                const size = document.getElementById('productSize').value;
+            //                                const brand = document.getElementById('productBrand').value;
+            //                                const status = document.getElementById('productStatus').checked ? 'Active' : 'Inactive';
+            //
+            //                                // Here, you would typically make an API call to save the product data.
+            //                                console.log({
+            //                                    title,
+            //                                    description,
+            //                                    price,
+            //                                    qty,
+            //                                    category,
+            //                                    subCategory,
+            //                                    color,
+            //                                    size,
+            //                                    brand,
+            //                                    status
+            //                                });
+            //
+            //                                // Reset the form and close the modal after submission
+            //                                addProductForm.reset();
+            //                                addProductModal.style.display = 'none';
+            //                            });
+        </script>
+        <script src="js/admin-product-listning.js"></script>
+        <script src="js/admin-product-management.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    </body>
+
+</html>

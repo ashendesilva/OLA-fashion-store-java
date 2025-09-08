@@ -14,6 +14,17 @@
         <mapping class="hibernate.Province"/>
         <mapping class="hibernate.City"/>
         <mapping class="hibernate.Address"/>
+        <mapping class="hibernate.Brand"/>        
+        <mapping class="hibernate.Category"/>
+        <mapping class="hibernate.Color"/>
+        <mapping class="hibernate.SubCategory"/>
+        <mapping class="hibernate.ProductStatus"/>
+        <mapping class="hibernate.Product"/>
+        <mapping class="hibernate.Size"/>
+        <mapping class="hibernate.Cart"/>
+        <mapping class="hibernate.Orders"/>        
+        <mapping class="hibernate.OrderItems"/>
+        <mapping class="hibernate.Animal"/>
 
 
 

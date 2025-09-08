@@ -49,6 +49,7 @@ public class SignUp extends HttpServlet {
         String password = user.get("password").getAsString();
         String mobile = user.get("mobile").getAsString();
 
+       
         // Validation
         if (firstname.isEmpty()) {
             resJsonObject.addProperty("message", "First Name is required");
@@ -60,8 +61,13 @@ public class SignUp extends HttpServlet {
             resJsonObject.addProperty("message", "Please enter a valid email");
         } else if (mobile.isEmpty()) {
             resJsonObject.addProperty("message", "Mobile is required");
+        } else if (!mobile.matches("^(07[0-9]{8})$")) {
+            resJsonObject.addProperty("message", "Invalid Sri Lanka mobile number format! ex:0773334441");
         } else if (password.isEmpty()) {
             resJsonObject.addProperty("message", "Password is required");
+        } else if (!Util.isPasswordValid(password)) {
+            resJsonObject.addProperty("message", "The password must contains at least uppercase, lowecase,"
+                    + " number, special character and to be minimum eight characters long!");
         } else {
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
@@ -73,11 +79,11 @@ public class SignUp extends HttpServlet {
             if (!criteria.list().isEmpty()) {
                 resJsonObject.addProperty("message", "User with email already exists");
             } else {
-                
+
                 String usertypeId = ("1");
                 UserType userType = (UserType) s.load(UserType.class, Integer.parseInt(usertypeId));
                 UserStatus userStatus = (UserStatus) s.load(UserStatus.class, 1);
-                
+
                 User u = new User();
                 u.setF_name(firstname);
                 u.setL_name(lastname);

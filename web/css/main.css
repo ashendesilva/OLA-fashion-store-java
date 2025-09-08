@@ -130,6 +130,23 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   transform: translate(-50%, -50%);
 }
 
+/*changed css*/ 
+
+
+.sub-category-item {
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sub-category-item.selected {
+    color: blue; 
+    font-weight: bold; 
+}
+
+
+/*changed css*/ 
+
 .loader05 {
   width: 56px;
   height: 56px;
@@ -311,6 +328,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   align-items: center;
   background-color: transparent;
 }
+
 
 
 
@@ -1433,7 +1451,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   position: absolute;
   z-index: 100;
   width: 83.333333%;
-  right: 0;
+  right: 16.7%;
   top: calc(50% - 20px);
 }
 
