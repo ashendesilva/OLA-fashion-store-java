@@ -36,17 +36,17 @@ CREATE TABLE IF NOT EXISTS `address` (
 
 -- Dumping data for table ola_clothing_store.address: ~9 rows (approximately)
 REPLACE INTO `address` (`id`, `user_id`, `address_line_1`, `address_line_2`, `postal_code`, `city_id`) VALUES
-	(1, 1, '29/a', 'walikatiya, pamunugama', '12312', 1),
-	(2, 1, '20/w', 'ja ela', '134321', 2),
-	(3, 1, '30/a', 'ja ela', NULL, 7),
-	(6, 2, 'sdf', 'sdfds', '43535', 14),
-	(7, 2, 'sdf', 'sda', '43535', 13),
-	(8, 1, '29/A, Walikatiya, Pamunugama.', 'negombo', '11370', 14),
-	(9, 2, '29/A, Walikatiya, ', 'edsf', '11370', 13),
-	(10, 1, '29/A, Wagfhflikatiya, Pafghgfmunugama.', 'negombo', '11370', 1),
-	(12, 26, '29/A, Walikatiya, Pamunugama.', 'negombo', '11370', 1),
-	(13, 29, '29/A, Wagfhflikatiya, Pafghgfmunugama.', 'negombo', '11370', 1),
-	(14, 30, '29/A, Walikatiya, Pamunugama.', 'negombo', '11370', 1);
+	(1, 1, '12/A', 'Main Street, Colombo', '12312', 1),
+	(2, 1, '45/B', 'Station Road, Galle', '134321', 2),
+	(3, 1, '78/C', 'Market Lane, Kandy', NULL, 7),
+	(6, 2, '101/D', 'Temple Road, Matara', '43535', 14),
+	(7, 2, '22/E', 'Lake View, Kurunegala', '43535', 13),
+	(8, 1, '56/F', 'Sea Avenue, Negombo', '11370', 14),
+	(9, 2, '33/G', 'Hill Street, Nuwara Eliya', '11370', 13),
+	(10, 1, '88/H', 'Park Road, Colombo', '11370', 1),
+	(12, 26, '19/J', 'Garden Road, Negombo', '11370', 1),
+	(13, 29, '77/K', 'Station Road, Kurunegala', '11370', 1),
+	(14, 30, '25/L', 'River Side, Gampaha', '11370', 1);
 
 -- Dumping structure for table ola_clothing_store.brand
 CREATE TABLE IF NOT EXISTS `brand` (
@@ -382,19 +382,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `fk_user_user_status1` FOREIGN KEY (`user_status_id`) REFERENCES `user_status` (`id`),
   CONSTRAINT `fk_user_user_type1` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Dumping data for table ola_clothing_store.user: ~9 rows (approximately)
 REPLACE INTO `user` (`id`, `f_name`, `l_name`, `email`, `password`, `phone`, `user_status_id`, `created_at`, `user_type_id`, `verification`) VALUES
-	(1, 'Ashen', 'Himasha', 'chanithupeweqrera2@gmail.com', 'Ashen@1111', '07631884218', 1, '2025-07-23 11:31:56', 1, 'Verified'),
-	(2, 'Ashen1', 'De Silva', 'ashenhimasha10@gmail.com', 'admin', '0763213211', 1, '2025-07-23 20:56:39', 2, 'Verified'),
-	(15, 'John', 'Doe', 'john.doe@email.com', 'password123', '123-456-7890', 2, '2025-07-25 21:26:04', 2, 'Verified'),
-	(24, 'Ashen', 'De Silva', 'lucifergagfmfging33332@gmail.com', 'dfs', '0763188418', 1, '2025-08-08 20:10:57', 1, '162126'),
-	(25, 'Ashen', 'De Silva', 'lucifergadfgming33332@gmail.com', 'Ashen@1012', '0763188418', 1, '2025-08-08 20:12:33', 1, 'Verified'),
-	(26, 'Malshi', 'Kushara', 'malshikushara777@gmail.com', 'Malshi@11', '0763188418', 1, '2025-08-09 21:15:09', 1, 'Verified'),
-	(27, 'Ashen', 'De Silva', 'lucifergaming33332@gmail.com', 'Ashen@1012', '0763188418', 1, '2025-08-14 14:42:33', 1, '564235'),
-	(28, 'Sahan ', 'Perera', 'chanithupererfdssda2@gmail.com', 'Ashen@1012', '0763188482', 1, '2025-08-14 14:45:48', 1, 'Verified'),
-	(29, 'Ashen', 'De Silva', 'lucifergaming7848@gmail.com', 'Ashen@1012', '0763188418', 1, '2025-08-14 14:49:53', 1, 'Verified'),
-	(30, 'Ashen himasha', 'De Silva', 'chanithuperera2@gmail.com', 'Ashen@1012', '0763188418', 1, '2025-08-14 15:08:18', 1, 'Verified');
+	(1, 'Alex', 'Johnson', 'alex.johnson@example.com', 'Pass@1234', '0711234567', 1, '2025-07-23 11:31:56', 1, 'Verified'),
+	(2, 'Maria', 'Lopez', 'maria.lopez@example.com', 'Admin@2025', '0729876543', 1, '2025-07-23 20:56:39', 2, 'Verified'),
+	(15, 'John', 'Smith', 'john.smith@example.com', 'User@123', '0754567890', 2, '2025-07-25 21:26:04', 2, 'Verified'),
+	(24, 'Emma', 'Brown', 'emma.brown@example.com', 'Temp@111', '0761122334', 1, '2025-08-08 20:10:57', 1, '162126'),
+	(25, 'Liam', 'Taylor', 'liam.taylor@example.com', 'Secure@789', '0775566778', 1, '2025-08-08 20:12:33', 1, 'Verified'),
+	(26, 'Sophia', 'Davis', 'sophia.davis@example.com', 'Sophia@22', '0789988776', 1, '2025-08-09 21:15:09', 1, 'Verified'),
+	(27, 'Ethan', 'Miller', 'ethan.miller@example.com', 'Test@555', '0793344556', 1, '2025-08-14 14:42:33', 1, '564235'),
+	(28, 'Olivia', 'Wilson', 'olivia.wilson@example.com', 'Olivia@321', '0702233445', 1, '2025-08-14 14:45:48', 1, 'Verified'),
+	(29, 'James', 'Anderson', 'james.anderson@example.com', 'James@4321', '0714455667', 1, '2025-08-14 14:49:53', 1, 'Verified'),
+	(30, 'Ava', 'Martinez', 'ava.martinez@example.com', 'Ava@1010', '0723344556', 1, '2025-08-14 15:08:18', 1, 'Verified');
+
 
 -- Dumping structure for table ola_clothing_store.user_status
 CREATE TABLE IF NOT EXISTS `user_status` (
